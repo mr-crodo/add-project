@@ -25,6 +25,7 @@
                     prepend-inner-icon="mdi-account"
                     type="name"
                     v-model="form.name"
+                    :rules="nameRules"
                 ></v-text-field>
                 <v-text-field
                     color="blue-grey"
@@ -82,19 +83,50 @@
                 wait ...
               </button>
             </v-card-actions>
-
-            <v-btn
-                block
-                color="secondary"
-                depressed
-                elevation="2"
-                @click="googleLogin"
-            >
-              <v-icon color="red lighten-1">
-                mdi-google
-              </v-icon>
-            </v-btn>
-
+            <v-row justify="space-around" class="mt-6 mb-6">
+                  <v-card-title>
+                    Create an account using:
+                  </v-card-title>
+                        <v-card 
+                        class="d-flex flex-column flex-wrap justify-content-between" 
+                        height="200px" 
+                        width="80%"
+                        >
+                            <v-btn
+                                color="white"
+                                depressed
+                                elevation="2"
+                                block
+                                class="mt-2 mb-2"
+                                @click="googleLogin"
+                            >
+                              <v-icon left  color="red lighten-1">mdi-google</v-icon>
+                              Google
+                            </v-btn>
+                            <v-btn
+                                color="white"
+                                depressed
+                                elevation="2"
+                                block
+                                class="mt-2 mb-2"
+                                @click="facebookLogin"
+                            >
+                              <v-icon left  color="blue lighten-1">mdi-facebook</v-icon>
+                              Facebook
+                            </v-btn>
+                            <v-btn
+                                color="white"
+                                depressed
+                                elevation="2"
+                                block
+                                class="mt-2 mb-2"
+                                @click="githubLogin"
+                            >
+                              <v-icon left  color="black lighten-2">mdi-github</v-icon>
+                              GitHub
+                            </v-btn>
+                        </v-card>
+              </v-row>
             <v-alert
                 text
                 color="blue-grey darken-1"
@@ -157,7 +189,7 @@ export default {
       confirmPasswordRules: [
         v => !!v || 'Password is required',
           v => v == this.form.password || 'Passwords should match'
-      ]
+      ],
     }
   },
   watch: {
@@ -179,7 +211,7 @@ export default {
   methods: {
     signupRequest: function () {
 
-      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE)
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 
           .then(() => {
             let v = this;
@@ -195,26 +227,27 @@ export default {
                   })
                   .then(() => {});
                   // testing login user or no
+                  this.$router.replace({ name: "user" });
                   let strLog = `
-                      <div v-if="user" class="alert alert-success" role="alert">You are logged in mr. ${this.data.displayName}!
+                    <div v-if="user" class="alert alert-success" role="alert">You are logged in mr. ${this.data.displayName}!
                       <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
-  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
-</svg>
-                      </div>
+                        <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
+                      </svg>
+                    </div>
 
                       `;
                   document.querySelector(".card-body").innerHTML = strLog;
-                  this.$router.replace('user')
+                  // this.$router.replace('user')
                 },
                 (err) => {
                   v.xhrRequest = false;
                   let strEr = `
-                  <div class="alert alert-danger" role="alert">${err.message}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cone-striped" viewBox="0 0 16 16">
-  <path d="m9.97 4.88.953 3.811C10.159 8.878 9.14 9 8 9c-1.14 0-2.158-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.275 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm4.396 8.613a.5.5 0 0 1 .037.96l-6 2a.5.5 0 0 1-.316 0l-6-2a.5.5 0 0 1 .037-.96l2.391-.598.565-2.257c.862.212 1.964.339 3.165.339s2.303-.127 3.165-.339l.565 2.257 2.391.598z"/>
-</svg>
-                  </div>
-                  `;
+                    <div class="alert alert-danger" role="alert">${err.message}
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cone-striped" viewBox="0 0 16 16">
+                        <path d="m9.97 4.88.953 3.811C10.159 8.878 9.14 9 8 9c-1.14 0-2.158-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.275 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm4.396 8.613a.5.5 0 0 1 .037.96l-6 2a.5.5 0 0 1-.316 0l-6-2a.5.5 0 0 1 .037-.96l2.391-.598.565-2.257c.862.212 1.964.339 3.165.339s2.303-.127 3.165-.339l.565 2.257 2.391.598z"/>
+                      </svg>
+                    </div>
+                    `;
                   document.querySelector(".card-body").innerHTML = strEr;
                 }
             )
@@ -258,16 +291,65 @@ export default {
           .catch((err) => {
             alert(err.message);
             let strEr = `
-                  <div class="alert alert-dark" role="alert">${err.message}
-                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cone-striped" viewBox="0 0 16 16">
-  <path d="m9.97 4.88.953 3.811C10.159 8.878 9.14 9 8 9c-1.14 0-2.158-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.275 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm4.396 8.613a.5.5 0 0 1 .037.96l-6 2a.5.5 0 0 1-.316 0l-6-2a.5.5 0 0 1 .037-.96l2.391-.598.565-2.257c.862.212 1.964.339 3.165.339s2.303-.127 3.165-.339l.565 2.257 2.391.598z"/>
-</svg>
-                  </div>
-                  `;
+              <div class="alert alert-dark" role="alert">${err.message}
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cone-striped" viewBox="0 0 16 16">
+                  <path d="m9.97 4.88.953 3.811C10.159 8.878 9.14 9 8 9c-1.14 0-2.158-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.275 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm4.396 8.613a.5.5 0 0 1 .037.96l-6 2a.5.5 0 0 1-.316 0l-6-2a.5.5 0 0 1 .037-.96l2.391-.598.565-2.257c.862.212 1.964.339 3.165.339s2.303-.127 3.165-.339l.565 2.257 2.391.598z"/>
+                </svg>
+              </div>
+              `;
             document.querySelector(".card-body").innerHTML = strEr;
       })
 
     },
+
+    facebookLogin: function () {
+              const facebookProvider = new firebase.auth.FacebookAuthProvider();
+              // facebookProvider.addScope('user_birthday');
+              firebase.auth().signInWithPopup(facebookProvider)
+              .then(() => {
+                window.location.assign('user')
+                // // This gives you a Facebook Access Token.
+                // var token = result.credential.accessToken;
+                // // The signed-in user info.
+                // var user = result.user;
+                // console.log(user);
+                // console.log(token);
+                alert('Login');
+                
+                
+                })
+                .catch(error => {
+                  let strEr = `
+                    <div class="alert alert-dark" role="alert">${error.message}
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cone-striped" viewBox="0 0 16 16">
+                          <path d="m9.97 4.88.953 3.811C10.159 8.878 9.14 9 8 9c-1.14 0-2.158-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.275 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm4.396 8.613a.5.5 0 0 1 .037.96l-6 2a.5.5 0 0 1-.316 0l-6-2a.5.5 0 0 1 .037-.96l2.391-.598.565-2.257c.862.212 1.964.339 3.165.339s2.303-.127 3.165-.339l.565 2.257 2.391.598z"/>
+                        </svg>
+                    </div>
+                    `;
+            document.querySelector(".card-body").innerHTML = strEr;
+                });
+    },
+
+    githubLogin: function () {
+      firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+      const githubProvider = new firebase.auth.GithubAuthProvider();
+      firebase.auth().signInWithPopup(githubProvider)
+      .then(() => {
+        window.location.assign('user')
+        alert('Login')
+      })
+      .catch(error => {
+        alert(error.message);
+        let strEr = `
+          <div class="alert alert-dark" role="alert">${error.message}
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cone-striped" viewBox="0 0 16 16">
+              <path d="m9.97 4.88.953 3.811C10.159 8.878 9.14 9 8 9c-1.14 0-2.158-.122-2.923-.309L6.03 4.88C6.635 4.957 7.3 5 8 5s1.365-.043 1.97-.12zm-.245-.978L8.97.88C8.718-.13 7.282-.13 7.03.88L6.275 3.9C6.8 3.965 7.382 4 8 4c.618 0 1.2-.036 1.725-.098zm4.396 8.613a.5.5 0 0 1 .037.96l-6 2a.5.5 0 0 1-.316 0l-6-2a.5.5 0 0 1 .037-.96l2.391-.598.565-2.257c.862.212 1.964.339 3.165.339s2.303-.127 3.165-.339l.565 2.257 2.391.598z"/>
+            </svg>
+          </div>
+          `;
+        document.querySelector(".card-body").innerHTML = strEr;
+      });
+    }
 
   }
 }

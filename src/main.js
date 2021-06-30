@@ -5,6 +5,7 @@ import router from './router/index'
 import store from './store'
 import { firestorePlugin } from 'vuefire'
 import VueCompositionApi from "@vue/composition-api"
+import 'firebase/firestore'
 
 import vuetify from './plugins/vuetify'
 import 'roboto-fontface/css/roboto/roboto-fontface.css'
@@ -42,6 +43,9 @@ firebase.initializeApp(configOptions);
 firebase.auth().onAuthStateChanged(user => {
   store.dispatch("fetchUser", user);
 });
+
+
+// facebook
 
 
 new Vue({

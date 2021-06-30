@@ -12,34 +12,29 @@
           x-large
           v-on="on"
       >
-        <v-avatar color="grey" v-if="!src">
+
+        <v-avatar color="grey" v-if="!user.data.photoURL">
           <v-icon dark>
             mdi-account-circle
           </v-icon>
         </v-avatar>
 
         <v-avatar v-else>
-          <img
-              :src="src"
-              alt="nas"
-          >
+          <Avatar :src="user.data.photoURL"/>
         </v-avatar>
       </v-btn>
     </template>
     <v-card>
       <v-list-item-content class="justify-center">
         <div class="mx-auto text-center">
-          <v-avatar color="grey" v-if="!src">
+          <v-avatar color="grey" v-if="!user.data.photoURL">
             <v-icon dark>
               mdi-account-circle
             </v-icon>
           </v-avatar>
 
           <v-avatar v-else>
-            <img
-                :src="src"
-                alt="nas"
-            >
+            <Avatar :src="user.data.photoURL"/>
           </v-avatar>
           <h3>{{ user.data.displayName }}</h3>
           <p class="text-caption mt-1">
@@ -72,12 +67,11 @@
 </template>
 
 <script>
-// import Avatar from './Auth/Avatar.vue'
 import { mapGetters } from "vuex";
 import firebase from "firebase";
-
+import Avatar from './User/Avatar.vue'
 export default {
-  // components: { Avatar },
+  components: { Avatar },
   computed: {
     ...mapGetters({
 // map `this.user` to `this.$store.getters.user`

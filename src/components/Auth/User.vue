@@ -23,7 +23,7 @@
             size="164"
             tile
           >
-            <Avatar :src="photoUrl"/>
+            <Avatar :src="user.data.photoURL"/>
           </v-avatar>
         </v-col>
         <v-col class="py-0">
@@ -35,7 +35,21 @@
               <v-list-item-title class="text-h6">
                 {{user.data.displayName}}
               </v-list-item-title>
-              <v-list-item-subtitle>Network Engineer</v-list-item-subtitle>
+              <v-list-item-subtitle>
+                {{ user.data.email }}
+              </v-list-item-subtitle>
+              <v-list-item-subtitle>
+                {{ user.data.phoneNumber }}
+              </v-list-item-subtitle>
+              <v-list-item-subtitle>
+                {{ user.data.providerId }}
+              </v-list-item-subtitle>
+              <v-list-item-subtitle>
+                {{ user.data.lastSignInTime }}
+              </v-list-item-subtitle>
+              <v-list-item-subtitle>
+                {{ user.data.uid }}
+              </v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
         </v-col>
@@ -46,6 +60,7 @@
 
 <script>
 import Avatar from './Avatar.vue'
+import {mapGetters} from "vuex";
 
 
 export default {
@@ -55,33 +70,12 @@ export default {
     name: { type: String, default: '' },
     photoUrl: { type: String, default: '' },
     sender: { type: Boolean, default: false }
-  }
-}
-</script>
-
-
-<!--<template>-->
-<!--  <div class="container">-->
-<!--    <div class="row justify-content-center">-->
-<!--      <div class="col-md-8">-->
-<!--        <div class="card">-->
-<!--          <div class="card-header">Dashboard</div>-->
-<!--          <div class="card-body">-->
-<!--            <div v-if="user" class="alert alert-success" role="alert">You are logged in!</div>-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</template>-->
-<script>
-import { mapGetters } from "vuex";
-export default {
+  },
   computed: {
     // map `this.user` to `this.$store.getters.user`
     ...mapGetters({
       user: "user"
     })
   }
-};
+}
 </script>

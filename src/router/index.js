@@ -1,5 +1,5 @@
 import Vue from 'vue'
-// import VueRouter from 'vue-router'
+import AuthGuard from './auth-guard'
 import Router from "vue-router";
 import Home from '@/components/Home'
 import Ad from '@/components/Ads/Ad'
@@ -11,6 +11,7 @@ import Orders from '@/components/User/Orders'
 import Avatar from '@/components/Auth/Avatar'
 import User from '@/components/Auth/User'
 import Nav from '@/components/Nav'
+import Main from "../components/Main";
 
 
 // Vue.use(VueRouter)
@@ -19,7 +20,7 @@ Vue.use(Router)
 
 const router =  new Router({
   routes: [{
-      path: '/home',
+      path: '/',
       name: 'home',
       component: Home
     },
@@ -32,17 +33,22 @@ const router =  new Router({
     {
       path: '/list',
       name: 'list',
-      component: AdList
+      component: AdList,
+      // This is written so that the buttons are not shown if you are not registered
+      beforeEnter: AuthGuard
     },
     {
       path: '/new',
       name: 'newAd',
-      component: NewAd
+      component: NewAd,
+      // This is written so that the buttons are not shown if you are not registered
+      beforeEnter: AuthGuard
     },
     {
       path: '/user',
       name: 'user',
       component: User,
+      // if not registered you cannot open this page
       // meta: {
       //   requiresAuth: true
       // }
@@ -50,7 +56,7 @@ const router =  new Router({
     {
       path: '/login',
       name: 'login',
-      component: Login
+      component: Login,
     },
     {
       path: '/nav',
@@ -60,7 +66,9 @@ const router =  new Router({
     {
       path: '/orders',
       name: 'orders',
-      component: Orders
+      component: Orders,
+      // This is written so that the buttons are not shown if you are not registered
+      beforeEnter: AuthGuard
     },
     {
       path: '/avatar',
@@ -71,6 +79,11 @@ const router =  new Router({
       path: '/registration',
       name: 'registration',
       component: Registration
+    },
+    {
+      path: '/main',
+      name: 'main',
+      component: Main
     }
   ],
   mode: 'history',

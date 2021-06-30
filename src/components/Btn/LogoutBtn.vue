@@ -1,21 +1,23 @@
 <template>
-  <v-bottom-navigation class="mt-1">
+  <div class="d-flex align-items-center justify-center">
     <v-btn
-        color="grey blue-grey--text-lighten-5 text--accent-4"
-        class="ml-2 info"
-        v-for="link in links"
-        :key="link.title"
-        :to="link.url"
+        color="red darken-1"
+        class="d-flex align-items-center justify-center ml-2"
+        @click.prevent="signOut"
+        block
     >
-      <v-icon left>{{ link.icon }}</v-icon>
-      {{ link.title }}
+      <v-icon left>mdi-logout</v-icon>
+      Sign out
     </v-btn>
-  </v-bottom-navigation>
+  </div>
 </template>
+
 <script>
-import { mapGetters } from "vuex";
+import {mapGetters} from "vuex";
 import firebase from "firebase";
+
 export default {
+  name: "LogoutBtn",
   data: () => ({
     drawer: false,
     group: null,
@@ -41,5 +43,9 @@ export default {
           });
     }
   }
-};
+}
 </script>
+
+<style scoped>
+
+</style>
