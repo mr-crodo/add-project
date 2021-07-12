@@ -63,15 +63,6 @@
                     :type="showPassword ? 'text' : 'password'"
                     @click:append="showPassword = !showPassword"
                 ></v-text-field>
-                <v-checkbox
-                    v-model="ex4"
-                    label="success"
-                    color="success"
-
-                    hide-details
-                    required
-                ></v-checkbox>
-
               </v-form>
             </v-card-text>
             <v-card-actions>
@@ -174,7 +165,6 @@ import firebase from 'firebase';
 export default {
   data () {
     return {
-      ex4: ['red', 'indigo', 'orange', 'primary', 'secondary', 'success', 'info', 'warning', 'error', 'red darken-3', 'indigo darken-3', 'orange darken-3'],
       form: {
         email: '',
         password: '',

@@ -11,17 +11,7 @@ import Orders from '@/components/User/Orders'
 import Avatar from '@/components/Auth/Avatar'
 import User from '@/components/Auth/User'
 import Nav from '@/components/Nav'
-import Main from "@/components/Main";
-import Chats from "@/components/Messenger/Chats";
-import Chat from "../components/Messenger/Chat";
-// import Video from "../components/Messenger/Video";
-import Profile from "@/components/Auth/Profile";
-import Video from "@/views/Video";
-import Rooms from "@/views/Rooms";
-import VideoChat from "@/views/Rooms";
-import CheckIn from "@/views/CheckIn";
-import Contact from "@/components/Contacts/Contact";
-
+import Main from "../components/Main";
 
 
 // Vue.use(VueRouter)
@@ -94,47 +84,7 @@ const router =  new Router({
       path: '/main',
       name: 'main',
       component: Main
-    },
-    {
-      path: '/chats',
-      name: 'chats',
-      component: Chats
-    },
-    {
-      path: '/chat',
-      name: 'chat',
-      component: Chat
-    },
-    {
-      path: '/profile',
-      name: 'profile',
-      component: Profile
-    },
-    {
-      path: '/video',
-      name: 'video',
-      component: Video
-    },
-    {
-      path: '/rooms',
-      name: 'rooms',
-      component: Rooms
-    },
-    {
-      path: '/checkin',
-      name: 'checkin',
-      component: CheckIn
-    },
-    {
-      path: '/videochat',
-      name: 'videochat',
-      component: VideoChat
-    },
-    {
-      path: '/contact',
-      name: 'contact',
-      component: Contact
-    },
+    }
   ],
   mode: 'history',
   base: process.env.BASE_URL
