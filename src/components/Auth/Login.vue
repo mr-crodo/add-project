@@ -198,6 +198,7 @@ export default {
           .then(data => {
             data.user
             this.$router.replace({ name: "user" });
+                this.$router.push('/rooms')
             let strLog = `
             <div v-if="user" class="alert alert-success" role="alert">You are logged in mr. ${this.data.displayName}!
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
@@ -261,8 +262,8 @@ export default {
                 // var user = result.user;
                 // console.log(user);
                 // console.log(token);
-                
-                
+
+
                 })
                 .catch(error => {
                   let strEr = `
@@ -298,8 +299,8 @@ export default {
 
     //
     created () {
-      if(this.$route.query['loginError']) {
-        this.$store.dispatch('setError', "Please log in to access this page")
+      if (this.$route.query['loginError']) {
+        this.$store.dispatch('setError', 'Please log in to access this page')
       }
     }
 

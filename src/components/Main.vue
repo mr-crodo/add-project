@@ -1,11 +1,12 @@
 <template>
 <v-row justify="center">
-  <v-card justify="center" class="portrait" v-if="user.loggedIn">
+  <v-card justify="center" class="portrait">
     <v-img
         class="my-img"
         src="@/assets/men.jpg"
         lazy-src="@/assets/me1.jpg"
     >
+<!--      <h1 class="main-text">{{ $t('welcomeMsg') }}</h1>-->
       <template v-slot:placeholder>
         <v-row
             class="fill-height ma-0"
@@ -27,31 +28,15 @@
     </v-img>
   </v-card>
 
-  <v-card
-      v-else
-      justify="center"
-  >
-    <v-alert
-        text
-        prominent
-        type="error"
-        icon="mdi-cloud-alert"
-    >
-      To view this page, register in the system or log in with your username and password.
-
-    </v-alert>
-  </v-card>
 </v-row>
 
 </template>
 
 <script>
 import {mapGetters} from "vuex";
-// import Logout from "@/components/Auth/Logout";
 
 export default {
   name: "Main",
-  // components: { Logout },
   data: () => ({
     drawer: false,
     group: null,
@@ -67,16 +52,27 @@ export default {
       user: "user"
     })
   },
+  methods: {
+    setLocale(locale) {
+      this.$i18n.locale = locale
+    }
+  }
 }
 </script>
 
 <style scoped>
+
+.main-text {
+  color: #ffffff;
+}
+
 .portrait {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
+  background-color: #000000 !important;
 }
 
 .my-img {
