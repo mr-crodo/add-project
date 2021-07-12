@@ -63,6 +63,15 @@
                     :type="showPassword ? 'text' : 'password'"
                     @click:append="showPassword = !showPassword"
                 ></v-text-field>
+                <v-checkbox
+                    v-model="ex4"
+                    label="success"
+                    color="success"
+
+                    hide-details
+                    required
+                ></v-checkbox>
+
               </v-form>
             </v-card-text>
             <v-card-actions>
@@ -165,6 +174,7 @@ import firebase from 'firebase';
 export default {
   data () {
     return {
+      ex4: ['red', 'indigo', 'orange', 'primary', 'secondary', 'success', 'info', 'warning', 'error', 'red darken-3', 'indigo darken-3', 'orange darken-3'],
       form: {
         email: '',
         password: '',
@@ -196,13 +206,10 @@ export default {
     loader () {
       const l = this.loader
       this[l] = !this[l]
-
       setTimeout(() => (this[l] = false), 3000)
-
       this.loader = null
     },
   },
-
   computed: {
     loading () {
        return this.$store.getters.loading
@@ -210,13 +217,10 @@ export default {
   },
   methods: {
     signupRequest: function () {
-
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-
           .then(() => {
             let v = this;
             v.xhrRequest = true;
-
             firebase
                 .auth()
                 .createUserWithEmailAndPassword(this.form.email, this.form.password)
@@ -234,7 +238,6 @@ export default {
                         <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z"/>
                       </svg>
                     </div>
-
                       `;
                   document.querySelector(".card-body").innerHTML = strLog;
                   // this.$router.replace('user')
@@ -258,12 +261,9 @@ export default {
           .catch((err) => {
             alert(err.message);
           })
-
     },
-
     googleLogin: function () {
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
-
           .then(() => {
             const provider = new firebase.auth.GoogleAuthProvider();
             firebase.auth().signInWithPopup(provider)
@@ -299,9 +299,7 @@ export default {
               `;
             document.querySelector(".card-body").innerHTML = strEr;
       })
-
     },
-
     facebookLogin: function () {
               const facebookProvider = new firebase.auth.FacebookAuthProvider();
               // facebookProvider.addScope('user_birthday');
@@ -329,7 +327,6 @@ export default {
             document.querySelector(".card-body").innerHTML = strEr;
                 });
     },
-
     githubLogin: function () {
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
       const githubProvider = new firebase.auth.GithubAuthProvider();
@@ -350,7 +347,6 @@ export default {
         document.querySelector(".card-body").innerHTML = strEr;
       });
     }
-
   }
 }
 </script>

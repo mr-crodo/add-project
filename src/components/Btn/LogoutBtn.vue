@@ -15,7 +15,6 @@
 <script>
 import {mapGetters} from "vuex";
 import firebase from "firebase";
-
 export default {
   name: "LogoutBtn",
   data: () => ({
@@ -47,5 +46,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>

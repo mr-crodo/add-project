@@ -42,7 +42,7 @@
                 {{ user.data.phoneNumber }}
               </v-list-item-subtitle>
               <v-list-item-subtitle>
-                {{ user.data.providerId }}
+<!--                {{ user.data.providerId }}-->
               </v-list-item-subtitle>
               <v-list-item-subtitle>
                 {{ user.data.lastSignInTime }}
@@ -61,10 +61,7 @@
 <script>
 import Avatar from './Avatar.vue'
 import {mapGetters} from "vuex";
-
-
 export default {
-
   components: { Avatar },
   props: {
     name: { type: String, default: '' },

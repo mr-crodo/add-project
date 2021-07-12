@@ -176,9 +176,7 @@ export default {
     loader () {
       const l = this.loader
       this[l] = !this[l]
-
       setTimeout(() => (this[l] = false), 3000)
-
       this.loader = null
     },
   },
@@ -188,16 +186,15 @@ export default {
       user: "user"
     })
   },
-
   methods: {
     loginUser() {
       let v = this;
-
       v.xhrRequest = true;
       firebase.auth().signInWithEmailAndPassword(this.form.email, this.form.password)
           .then(data => {
             data.user
             this.$router.replace({ name: "user" });
+                this.$router.push('/rooms')
             let strLog = `
             <div v-if="user" class="alert alert-success" role="alert">You are logged in mr. ${this.data.displayName}!
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-check-circle-fill" viewBox="0 0 16 16">
@@ -207,7 +204,6 @@ export default {
             `;
             document.querySelector(".card-body").innerHTML = strLog;
             v.xhrRequest = false;
-
           },
           (err) => {
             console.log(`Errordu qaqqa - ${err.message}`);
@@ -261,8 +257,6 @@ export default {
                 // var user = result.user;
                 // console.log(user);
                 // console.log(token);
-                
-                
                 })
                 .catch(error => {
                   let strEr = `
@@ -275,7 +269,6 @@ export default {
             document.querySelector(".card-body").innerHTML = strEr;
                 });
     },
-
     githubLogin: function () {
       firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
       const githubProvider = new firebase.auth.GithubAuthProvider();
@@ -295,14 +288,12 @@ export default {
         document.querySelector(".card-body").innerHTML = strEr;
       });
     },
-
     //
     created () {
-      if(this.$route.query['loginError']) {
-        this.$store.dispatch('setError', "Please log in to access this page")
+      if (this.$route.query['loginError']) {
+        this.$store.dispatch('setError', 'Please log in to access this page')
       }
     }
-
   },
   // components: { Avatar }
 }

@@ -1,33 +1,68 @@
 <template>
-  <v-app-bar-title>
+  <v-toolbar-items>
     <v-menu
-        v-for="([text, rounded], index) in btns"
-        :key="text"
-        :rounded="rounded"
         offset-y
     >
       <template v-slot:activator="{ attrs, on }">
         <v-btn
-            :color="colors[index]"
-            class="white--text ml-2"
+            color="grey darken-3 blue-grey--text-lighten-5 text--accent-4"
+            class="white--text ml-1 mr-1"
             v-bind="attrs"
             v-on="on"
         >
-          {{ text }} Radius
+          <v-icon left>mdi-google-ads</v-icon>
+          Ads is
         </v-btn>
       </template>
 
       <v-list>
         <v-list-item
-            v-for="item in items"
-            :key="item"
+            v-for="link in links"
+            :key="link"
             link
+            :to="link.url"
         >
-          <v-list-item-title v-text="item"></v-list-item-title>
+          <v-icon left>
+            {{ link.icon }}
+          </v-icon>
+          <v-list-item-title v-text="link.title"></v-list-item-title>
         </v-list-item>
       </v-list>
     </v-menu>
-  </v-app-bar-title>
+
+    <v-menu
+        offset-y
+    >
+      <template v-slot:activator="{ attrs, on }">
+        <v-btn
+            color="grey darken-3 blue-grey--text-lighten-5 text--accent-4"
+            class="white--text ml-1 mr-1"
+            v-bind="attrs"
+            v-on="on"
+        >
+          <v-icon left>mdi-account-supervisor</v-icon>
+          Users
+        </v-btn>
+      </template>
+
+      <v-list>
+        <v-list-item
+            v-for="user in users"
+            :key="user"
+            link
+            :to="user.url"
+        >
+          <v-icon left>
+            {{ user.icon }}
+          </v-icon>
+          <v-list-item-title v-text="user.title"></v-list-item-title>
+        </v-list-item>
+      </v-list>
+    </v-menu>
+
+
+  </v-toolbar-items>
+
 </template>
 
 <script>
@@ -35,16 +70,32 @@ export default {
   name: "DropDown",
   data: () => ({
     btns: [
-      ['Removed', '0'],
-      ['Large', 'lg'],
-      ['Custom', 'b-xl'],
+      ['Ads is', '0', 'mdi-bookmark'],
+      ['Users', '0', 'mdi-file-plus'],
+      ['Custom', '0', 'mdi-format-list-bulleted'],
     ],
-    colors: ['deep-purple accent-4', 'error', 'teal darken-1'],
-    items: [...Array(4)].map((_, i) => `Item ${i}`),
+    colors: ['grey darken-3 blue-grey--text-lighten-5 text--accent-4', 'error', 'teal darken-1'],
+    items: ['Orders', 'New ad', 'My ads', 'Admin', 'Users'].map(x => `${x}`),
+    links: [
+      {title: 'Orders', icon: 'mdi-bookmark', url: '/orders'},
+      {title: 'New ad', icon: 'mdi-file-plus', url: '/new'},
+      {title: 'My ads', icon: 'mdi-format-list-bulleted', url: '/list'},
+    ],
+    users: [
+      {title: 'Rooms', icon: 'mdi-human-capacity-decrease', url: '/rooms'},
+      {title: 'Chat', icon: 'mdi-chat', url: '/chat'},
+      {title: 'Video chat', icon: 'mdi-message-video', url: '/video'},
+      {title: 'Contacts', icon: 'mdi-star-circle', url: '/contact'},
+    ],
+    drawer: false,
+    // links: [
+    //   {icon: 'dashboard', text: 'Dashboard', route: '/'},
+    //   {icon: 'folder', text: 'My Projects', route: '/projects'},
+    //   {icon: 'person', text: 'Team', route: '/team'},
+    // ]
   }),
 }
 </script>
 
 <style scoped>
-
 </style>

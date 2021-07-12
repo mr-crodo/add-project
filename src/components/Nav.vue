@@ -27,7 +27,11 @@
     <v-card>
       <v-list-item-content class="justify-center">
         <div class="mx-auto text-center">
-          <v-avatar color="grey" v-if="!user.data.photoURL">
+          <v-avatar
+              color="grey"
+              v-if="!user.data.photoURL"
+              class="mx-auto text-center"
+          >
             <v-icon dark>
               mdi-account-circle
             </v-icon>
@@ -41,29 +45,40 @@
             {{ user.data.email }}
           </p>
           <v-divider class="my-3"></v-divider>
-          <v-btn
-              depressed
-              rounded
-              text
-              to="/user"
-          >
-            Edit Account
-          </v-btn>
+          <v-list>
+            <v-list-item-group>
+              <v-list-item
+                  depressed
+                  rounded
+                  text
+                  v-for="link of links"
+                  :key="link.title"
+                  :to="link.url"
+              >
+                <v-icon left>
+                  {{ link.icon }}
+                </v-icon>
+                <v-list-item-title>{{ link.title }}</v-list-item-title>
+              </v-list-item>
+            </v-list-item-group>
+          </v-list>
           <v-divider class="my-3"></v-divider>
-          <v-btn
+          <v-list-item
               depressed
               rounded
               text
+              class="logout"
               @click.prevent="signOut"
-              color="red darken-1"
           >
-            Disconnect
-          </v-btn>
+            <v-icon left>
+              mdi-exit-to-app
+            </v-icon>
+            <v-list-item-title>Logout</v-list-item-title>
+          </v-list-item>
         </div>
       </v-list-item-content>
     </v-card>
   </v-menu>
-
 </template>
 
 <script>
@@ -72,6 +87,16 @@ import firebase from "firebase";
 import Avatar from './User/Avatar.vue'
 export default {
   components: { Avatar },
+  data: () => ({
+    links: [
+      {title: 'My Profile', icon: 'mdi-account-circle-outline', url: '/user'},
+      {title: 'Edit Profile', icon: 'mdi-account-edit-outline', url: '/profile'},
+      {title: 'Inbox', icon: 'mdi-email-outline', url: '/chats'},
+      {title: 'Setting', icon: 'mdi-cog-outline', url: '/user'},
+      {title: 'Help', icon: 'mdi-help-circle-outline', url: '/user'},
+      // {title: 'Users', icon: 'mdi-account-supervisor', url: '/manID'}
+    ],
+  }),
   computed: {
     ...mapGetters({
 // map `this.user` to `this.$store.getters.user`
@@ -91,3 +116,14 @@ export default {
   }
 }
 </script>
+
+<style>
+.v-list-item:hover {
+  background-color: #80CBC4;
+  transition: all .5s;
+}
+.logout:hover {
+  background-color: #EF9A9A;
+  transition: all .5s;
+}
+</style>
