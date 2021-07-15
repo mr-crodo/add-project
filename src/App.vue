@@ -215,15 +215,16 @@
 
 
         <v-main class="mt-10 mb-10">
-          <v-container>
-            <router-view
-                :user="user"
-                :rooms="rooms"
-                @addRoom="addRoom"
-                @deleteRoom="deleteRoom"
-                @checkIn="checkIn"
-            ></router-view>
-          </v-container>
+<!--          <v-container>-->
+
+<!--          </v-container>-->
+          <router-view
+              :user="user"
+              :rooms="rooms"
+              @addRoom="addRoom"
+              @deleteRoom="deleteRoom"
+              @checkIn="checkIn"
+          ></router-view>
         </v-main>
         <vue-webrtc width="100%" roomId="roomId">
         </vue-webrtc>

@@ -10,8 +10,13 @@ import WebRTC from 'vue-webrtc'
 import * as io from 'socket.io-client'
 import {i18n} from "./plugins/i18n";
 import FlagIcon from "vue-flag-icon";
+import { gsap } from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import Draggable from "gsap/Draggable";
+// import { gsap, ScrollTrigger, Draggable, MotionPathPlugin } from "gsap/all";
+gsap.registerPlugin(ScrollTrigger, Draggable);
 // import * as VueGoogleMaps from 'vue2-google-maps'
-// import MapBox from 'mapbox-gl'
+import MapBox from 'mapbox-gl'
 //MapBox
 import Vue2MapboxGL from 'vue2mapbox-gl';
 
@@ -19,6 +24,13 @@ import Vue2MapboxGL from 'vue2mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 // for the v-mapbox-geocoder
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
+//video-bg
+import VideoBg from 'vue-videobg'
+
+//video bg -nov
+import VideoBackground from 'vue-responsive-video-background-player'
+
+Vue.component('video-background', VideoBackground);
 
 
 //MapBoxGL
@@ -39,8 +51,7 @@ window.io = io
 
 Vue.config.productionTip = false
 Vue.use(WebRTC)
-
-
+Vue.component('video-bg', VideoBg)
 LogRocket.init('1uo5lb/add-spa');
 Vue.use(FlagIcon)
 Vue.use(Vuetify)
@@ -108,6 +119,8 @@ new Vue({
   store,
   WebRTC,
   i18n,
+  gsap,
+  MapBox,
 
 
   render: h => h(App)
