@@ -6,44 +6,56 @@
     <div class="banner">
 
       <div class="sun">
+        <video-background
+            :src="require(`@/assets/merc.mp4`)"
+            :sources="[
+        {src: '@/assets/merc.mp4', res: 900, autoplay: true}
+    ]"
+            style="width: 40px; max-width: 40px; height: 40px; background-size: cover; padding: 0; max-height: 200px;"
+        >
+        </video-background>
+
+        <video-background
+            :src="require(`@/assets/portal.mp4`)"
+            :sources="[
+        {src: '@/assets/portal.mp4', res: 900, autoplay: true}
+    ]"
+            style="width: 20px; max-width: 20px; height: 20px; background-size: cover; padding: 0; max-height: 200px;"
+        >
+        </video-background>
+      </div>
+
+      <div class="planet">
 
         <video-background
             :src="require(`@/assets/mars.mp4`)"
             :sources="[
         {src: '@/assets/mars.mp4', res: 900, autoplay: true},
-        {src: '@/assets/mars.webm', res: 638, autoplay: true, poster: '@/assets/mars.jpg'}
+        {src: '@/assets/mars.mp4', res: 638, autoplay: true}
     ]"
             style="width: 50px; max-width: 50px; height: 50px; background-size: cover; padding: 0; max-height: 200px;"
         >
         </video-background>
 
         <video-background
-            :src="require(`@/assets/merc.mp4`)"
-            :sources="[
-        {src: '@/assets/merc.mp4', res: 900, autoplay: true},
-        {src: '@/assets/merc.webm', res: 638, autoplay: true, poster: '@/assets/merc.jpg'}
-    ]"
+            :src="require(`@/assets/moon1.mp4`)"
             style="width: 150px; max-width: 150px; height: 150px; background-size: cover; padding: 0; max-height: 200px;"
         >
         </video-background>
 
         <video-background
-            :src="require(`@/assets/407.mp4`)"
+            :src="require(`@/assets/jupiter.mp4`)"
             :sources="[
-        {src: '@/assets/mars.mp4', res: 900, autoplay: true},
-        {src: '@/assets/mars.webm', res: 638, autoplay: true, poster: '@/assets/mars.jpg'}
+        {src: '@/assets/jupiter.mp4', res: 900, autoplay: true},
+        {src: '@/assets/jupiter.mp4', res: 638, autoplay: true}
     ]"
-            style="width: 80px; max-width: 80px; height: 80px; background-size: cover; padding: 0; max-height: 200px;"
+            style="width: 40px; max-width: 40px; height: 40px; background-size: cover; padding: 0; max-height: 200px;"
         >
         </video-background>
       </div>
       <div class="rocket">
         <video-background
             :src="require(`@/assets/rocket.mp4`)"
-            :sources="[
-        {src: '@/assets/mars.mp4', res: 900, autoplay: true},
-        {src: '@/assets/mars.webm', res: 638, autoplay: true, poster: '@/assets/mars.jpg'}
-    ]"
             style="width: 50px; max-width: 50px; height: 50px; background-size: cover; padding: 0; max-height: 200px;"
         >
         </video-background>
@@ -53,7 +65,7 @@
 
 
       <mapbox
-          access-token="pk.eyJ1IjoibXJjcm9kbyIsImEiOiJjazY5cDBnYnowZ2prM2RwbXZjOG1zMTBwIn0.OXhUF1nfFLIWWxCpweanaA"
+          :access-token="accessToken"
           :map-options="{
         style: 'mapbox://styles/mrcrodo/ckqw1gevp14on17s45jjxrf61',
       }"
@@ -88,7 +100,34 @@
     </div>
 
     <section>
-      <h2>Realistic Cloud Banner Parallax Effects</h2>
+      <div class="d-flex align-items-center justify-content-between">
+        <v-col
+          sm="12"
+          md="4"
+        >
+          <v-img
+            src="../assets/join.png"
+            
+          >
+          
+          </v-img>
+        </v-col>
+        <v-col
+          cols="6"
+          class="flex-column d-none d-md-block"
+        >
+            <div class="wrapper d-md-block">
+              <div class="static-txt">I'm a</div>
+              <ul class="dynamic-txts">
+                <li><span>Full Stack</span></li>
+                <li><span>Frontend</span></li>
+                <li><span>Back-end</span></li>
+                <li><span>Freelancer</span></li>
+              </ul>
+            </div>
+            <h1 class="static-txt d-flex align-items-center justify-content-center">Developer</h1>
+        </v-col>
+      </div>
       <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci dolores harum, impedit itaque iusto magnam
         mollitia neque nesciunt, nisi quod sapiente similique vel voluptate? Aspernatur commodi consequuntur cum
@@ -125,32 +164,10 @@
         dignissimos dolor esse eum, eveniet expedita inventore maxime nam neque nisi reprehenderit sequi velit,
         vero, voluptatem? Dolor quia quisquam sit veritatis? Adipisci!
       </p>
-    </section>
-<!--    <v-img-->
-<!--        class="my-img"-->
-<!--        src="@/assets/men.jpg"-->
-<!--        lazy-src="@/assets/me1.jpg"-->
-<!--    >-->
-<!--      <h1 class="main-text">{{ $t('welcomeMsg') }}</h1>-->
-<!--      <template v-slot:placeholder>-->
-<!--        <v-row-->
-<!--            class="fill-height ma-0"-->
-<!--            align="center"-->
-<!--            justify="center"-->
-<!--        >-->
-<!--          <v-progress-circular-->
-<!--              indeterminate-->
-<!--              color="grey lighten-5"-->
-<!--          ></v-progress-circular>-->
-<!--        </v-row>-->
-<!--      </template>-->
-<!--    </v-img>-->
-<!--    <v-img-->
-<!--        class="texture"-->
-<!--        src="@/assets/blowup.jpg"-->
-<!--    >-->
 
-<!--    </v-img>-->
+
+    </section>
+
 
 
   </v-card>
@@ -214,6 +231,10 @@ export default {
   box-sizing: border-box;
 }
 
+/* section {
+  background: #343F4F;
+} */
+
 .banner {
   position: relative;
   width: 100%;
@@ -261,6 +282,13 @@ export default {
   /*border-radius: 50%;*/
   display: flex;
   justify-content: space-between;
+  max-width: 980px;
+  width: 100%;
+}
+
+.planet {
+  display: flex;
+  justify-content: space-between;
   max-width: 500px;
   width: 100%;
 }
@@ -291,6 +319,62 @@ section h2 {
 #map {
   width: 100%;
   height: 500px;
+}
+
+.wrapper {
+  display: inline-flex;
+}
+
+ .static-txt {
+  font-size: 60px;
+  color: #000;
+  font-weight: 400;
+}
+
+.wrapper .dynamic-txts {
+  margin-left: 15px;
+  line-height: 90px;
+  height: 90px;
+  /* background: red; */
+  overflow: hidden;
+}
+
+.dynamic-txts li {
+  list-style: none;
+  font-size: 60px;
+  font-weight: 500;
+  color: #FC6D6D;
+  position: relative;
+  top: 0;
+  animation: slide 6s steps(4) infinite;
+}
+
+@keyframes slide {
+  100% {
+    top: -360px;
+  }
+}
+
+.dynamic-txts li span {
+  position: relative;
+}
+
+.dynamic-txts li span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: #fff;
+  border-left: 2px solid #FC6D6D;
+  animation: typing 1.5s steps(10) infinite;
+}
+
+@keyframes typing {
+  100% {
+    left: 100%;
+    margin: 0 -35px 0 35px;
+  }
 }
 
 @keyframes animate {
@@ -329,4 +413,17 @@ section h2 {
 /*  mix-blend-mode: multiply;*/
 /*  filter: contrast(1.5);*/
 /*}*/
+
+  .bottom-gradient {
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.4) 0%, transparent 72px);
+  }
+
+  .repeating-gradient {
+    background-image: repeating-linear-gradient(-45deg,
+                        rgba(255,0,0,.25),
+                        rgba(255,0,0,.25) 5px,
+                        rgba(0,0,255,.25) 5px,
+                        rgba(0,0,255,.25) 10px
+                      );
+  }
 </style>

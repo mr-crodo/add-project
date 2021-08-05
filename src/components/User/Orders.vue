@@ -13,9 +13,7 @@
               <v-list-item-subtitle>Change your Google+ profile photo</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
-
         </v-list>
-
         <v-divider></v-divider>
 
         <v-list
@@ -23,15 +21,12 @@
             two-line
             text
         >
-
           <v-list-item-group
               avatar
               v-for="order in orders"
               :key="order"
               multiple
           >
-
-
             <v-list-content class="d-flex col-12">
               <v-list-item
                   class="d-flex col-7"

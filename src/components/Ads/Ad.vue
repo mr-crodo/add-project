@@ -57,7 +57,7 @@
                 border="left"
                 class="product__price title"
             >
-              $ {{ ad.price }}
+              {{ ad.price }} azn
             </v-alert>
             <v-spacer></v-spacer>
             <v-btn

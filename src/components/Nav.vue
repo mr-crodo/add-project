@@ -90,10 +90,8 @@ export default {
   data: () => ({
     links: [
       {title: 'My Profile', icon: 'mdi-account-circle-outline', url: '/user'},
-      {title: 'Edit Profile', icon: 'mdi-account-edit-outline', url: '/profile'},
-      {title: 'Inbox', icon: 'mdi-email-outline', url: '/chats'},
-      {title: 'Setting', icon: 'mdi-cog-outline', url: '/user'},
-      {title: 'Help', icon: 'mdi-help-circle-outline', url: '/user'},
+      // {title: 'Edit Profile', icon: 'mdi-account-edit-outline', url: '/profile'},
+      // {title: 'Help', icon: 'mdi-help-circle-outline', url: '/user'},
       // {title: 'Users', icon: 'mdi-account-supervisor', url: '/manID'}
     ],
   }),

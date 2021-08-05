@@ -2,8 +2,9 @@
   <v-toolbar-items>
     <v-menu
         offset-y
+        v-if="user.loggedIn"
     >
-      <template v-slot:activator="{ attrs, on }">
+      <template v-if="user.admin" v-slot:activator="{ attrs, on }">
         <v-btn
             color="grey darken-3 blue-grey--text-lighten-5 text--accent-4"
             class="white--text ml-1 mr-1"
@@ -11,7 +12,7 @@
             v-on="on"
         >
           <v-icon left>mdi-google-ads</v-icon>
-          Ads is
+          Store
         </v-btn>
       </template>
 
@@ -66,11 +67,13 @@
 </template>
 
 <script>
+import {mapGetters} from "vuex";
+
 export default {
   name: "DropDown",
   data: () => ({
     btns: [
-      ['Ads is', '0', 'mdi-bookmark'],
+      ['Store', '0', 'mdi-bookmark'],
       ['Users', '0', 'mdi-file-plus'],
       ['Custom', '0', 'mdi-format-list-bulleted'],
     ],
@@ -94,6 +97,12 @@ export default {
     //   {icon: 'person', text: 'Team', route: '/team'},
     // ]
   }),
+  computed: {
+    // map `this.user` to `this.$store.getters.user`
+    ...mapGetters({
+      user: "user"
+    })
+  },
 }
 </script>
 

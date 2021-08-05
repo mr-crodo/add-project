@@ -1,6 +1,6 @@
 <template>
 
-  <div id="app">
+  <div id="app" v-if="!loading">
     <v-app id="inspire">
       <v-card
           class="mx-auto overflow-hidden"
@@ -23,12 +23,7 @@
 
           <v-toolbar-title>
             <router-link to="/" tag="span" class="pointer">
-              <v-icon color="green">mdi-triangle-outline</v-icon>
-              <v-icon color="indigo lighten-3">mdi-alpha-d-box</v-icon>
-              <v-spacer></v-spacer>
-              <v-icon color="light-blue lighten-1">mdi-alpha-a-box-outline</v-icon>
-              <v-icon color="grey">mdi-alpha-p-circle</v-icon>
-              <v-icon color="red">mdi-alpha-p</v-icon>
+              <v-icon x-large color="teal lighten-2">mdi-alien-outline</v-icon>
               </router-link>
           </v-toolbar-title>
 
@@ -92,11 +87,6 @@
                 </v-list-item>
               </v-list>
             </v-menu>
-<!--            <v-btn>-->
-<!--              <a href="#" @click="setLocale('en')"><flag iso="us"></flag></a>-->
-<!--              <a href="#" @click="setLocale('ru')"><flag iso="ru"></flag></a>-->
-<!--              <a href="#" @click="setLocale('az')"><flag iso="az"></flag></a>-->
-<!--            </v-btn>-->
           </v-toolbar-items>
           <v-toolbar-items>
             <v-badge
@@ -215,9 +205,6 @@
 
 
         <v-main class="mt-10 mb-10">
-<!--          <v-container>-->
-
-<!--          </v-container>-->
           <router-view
               :user="user"
               :rooms="rooms"
@@ -226,45 +213,24 @@
               @checkIn="checkIn"
           ></router-view>
         </v-main>
-        <vue-webrtc width="100%" roomId="roomId">
-        </vue-webrtc>
-
-        <!-- <v-card height="100px">
-          <v-footer
-              v-bind="localAttrs"
-              :padless="padless"
-          >
-            <v-card
-                flat
-                tile
-                width="100%"
-                color="grey darken-3 text-center"
-            >
-              <v-card-text>
-                <v-btn
-                    v-for="ico in icons"
-                    :key="ico"
-                    :color="ico.color"
-                    class="mx-4"
-                    :to="ico.url"
-                    icon
-                    dark
-                >
-                  <v-icon size="24px">
-                    {{ ico.icon }}
-                  </v-icon>
-                </v-btn>
-              </v-card-text>
-              <v-divider></v-divider>
-              <v-card-text class="white--text">
-                {{ new Date().getFullYear() }} — <strong>Vuetify</strong>
-              </v-card-text>
-            </v-card>
-          </v-footer>
-        </v-card> -->
       </v-card>
 
     </v-app>
+  </div>
+
+    <div v-else class="d-flex hh align-center justify-center">
+    <v-container>
+      <v-layout row class="text-center">
+        <v-flex xs12 justify-center class="text-xs-center pt-5">
+            <v-progress-circular
+              :size="110"
+              :width="7"
+              color="cyan darken-2"
+              indeterminate
+            ></v-progress-circular>
+        </v-flex>
+      </v-layout>
+    </v-container>
   </div>
 </template>
 
@@ -342,6 +308,9 @@ export default {
       }
       return attrs
     },
+    loading () {
+      return this.$store.getters.loading
+    }
   },
   methods: {
     setLocale(locale) {

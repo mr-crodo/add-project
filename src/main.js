@@ -15,11 +15,9 @@ import ScrollTrigger from "gsap/ScrollTrigger";
 import Draggable from "gsap/Draggable";
 // import { gsap, ScrollTrigger, Draggable, MotionPathPlugin } from "gsap/all";
 gsap.registerPlugin(ScrollTrigger, Draggable);
-// import * as VueGoogleMaps from 'vue2-google-maps'
 import MapBox from 'mapbox-gl'
 //MapBox
 import Vue2MapboxGL from 'vue2mapbox-gl';
-
 // You might want to import the relevant css, for example:
 import 'mapbox-gl/dist/mapbox-gl.css';
 // for the v-mapbox-geocoder
@@ -58,15 +56,7 @@ Vue.use(Vuetify)
 Vue.use(VueCompositionApi)
 Vue.use(firestorePlugin)
 Vue.config.productionTip = false
-//Google Maps
-// Vue.use(VueGoogleMaps, {
-//   load: {
-//     key: 'AIzaSyAMKOLdahqRvXL1FxW-nqG-mTD8OVCng0k',
-//     libraries: 'places', // This is required if you use the Autocomplete plugin
-//
-//   },
-//
-// })
+
 
 const configOptions = {
   apiKey: "AIzaSyBiBU_HKyP-4tOnaUn7vmpgnE5nMjIII_U",

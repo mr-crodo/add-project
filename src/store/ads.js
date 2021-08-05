@@ -82,13 +82,97 @@ export default {
                 title: 'Apple MacBook (MLHC2RU/A)',
                 vendor: 'Apple',
                 color: 'silver',
+                material: 'aluminum',
+                description: 'Intel Core m3 1200 MHz/12"/2304x1440/8Gb/256Gb SSD/DVD nou/Intel HD Graphics 615/Wi-Fi/Bluetooth/MacOS X',
+                price: 980,
+                promo: true,
+                stock: true,
+                imageSrc: 'https://image.ibb.co/fxDsgo/Apple_macbook.jpg'
+            },
+            {
+                id: '7',
+                title: 'MacBook Pro 16" Laptop',
+                vendor: 'Apple',
+                color: 'silver',
+                material: 'aluminum',
+                description: 'Intel Core i9 4200 MHz/12"/2304x1440/16Gb/2TB SSD/DVD nou/AMD Radeon Pro 5500M 8GB /Wi-Fi/Bluetooth/MacOS X',
+                price: 6220,
+                promo: true,
+                stock: true,
+                imageSrc: 'https://i.ibb.co/9gPY425/kisspng-macbook-pro-15-4-inch-macbook-air-laptop-apple-notebook-vector-elements-5a8b1f10b5ec49-22658.png'
+            },
+            {
+                id: '8',
+                title: 'HP Pavilion G-7',
+                vendor: 'PH',
+                color: 'black',
+                material: 'plastic',
+                description: 'Intel Core i5 1800 MHz/15"/1920x1080/8Gb/637Gb HDD/DVD yes/Intel HD Graphics 615/Wi-Fi/Bluetooth/FreeDos',
+                price: 1200,
+                promo: true,
+                stock: true,
+                imageSrc: 'https://i.ibb.co/vqn1pYD/kisspng-laptop-computer-mouse-clip-art-notebook-5acf562025fd83-1909120315235374401556.png'
+            },
+            {
+                id: '9',
+                title: 'HP Pavilion G-7 2000',
+                vendor: 'HP',
+                color: 'black',
+                material: 'plastic',
+                description: 'Intel Core i7 1200 MHz/15"/FullHD/1920x1080/8Gb/1TB HDD/DVD yes/AMD Radeon 630/Wi-Fi/Bluetooth/Windows 10',
+                price: 1800,
+                promo: true,
+                stock: true,
+                imageSrc: 'https://i.ibb.co/RTWmdj6/kisspng-laptop-computer-hardware-personal-computer-netbook-b-5ad8b3ad082866-9386030215241512130334.png'
+            },
+            {
+                id: '10',
+                title: 'HP Pavilion G-Xd 2000',
+                vendor: 'Apple',
+                color: 'silver',
+                material: 'metal',
+                description: 'Intel Core i7 1200 MHz/12"/2304x1440/8Gb/256Gb SSD/DVD нет/Intel HD Graphics 615/Wi-Fi/Bluetooth/FreeDos',
+                price: 2980,
+                promo: true,
+                stock: true,
+                imageSrc: 'https://i.ibb.co/4FZS81z/kisspng-laptop-intel-core-i7-lenovo-ideapad-notebook-5ac6989f1e6dd8-8752823515229646391246.png'
+            },
+            {
+                id: '11',
+                title: 'Testing MacBook (MLHC2RU/A)',
+                vendor: 'Apple',
+                color: 'silver',
                 material: 'metal',
                 description: 'Intel Core m3 1200 MHz/12"/2304x1440/8Gb/256Gb SSD/DVD нет/Intel HD Graphics 615/Wi-Fi/Bluetooth/MacOS X',
                 price: 980,
                 promo: true,
                 stock: true,
-                imageSrc: 'https://image.ibb.co/fxDsgo/Apple_macbook.jpg'
-            }
+                imageSrc: 'https://i.ibb.co/vZn9K9h/kisspng-laptop-dell-alienware-17-r4-dell-alienware-15-r3-5af35c535c8210-1929465915258983233789.png'
+            },
+            {
+                id: '12',
+                title: 'Testing MacBook (MLHC2RU/A)',
+                vendor: 'Apple',
+                color: 'silver',
+                material: 'metal',
+                description: 'Intel Core m3 1200 MHz/12"/2304x1440/8Gb/256Gb SSD/DVD нет/Intel HD Graphics 615/Wi-Fi/Bluetooth/MacOS X',
+                price: 980,
+                promo: true,
+                stock: true,
+                imageSrc: 'https://i.ibb.co/XFR9MPY/kisspng-laptop-intel-lenovo-thinkpad-l580-15-6-1920-x-108-5b1ac0c18c26f0-8392460815284799375741.png'
+            },
+            {
+                id: '13',
+                title: 'Testing MacBook (MLHC2RU/A)',
+                vendor: 'Apple',
+                color: 'silver',
+                material: 'metal',
+                description: 'Intel Core m3 1200 MHz/12"/2304x1440/8Gb/256Gb SSD/DVD нет/Intel HD Graphics 615/Wi-Fi/Bluetooth/MacOS X',
+                price: 980,
+                promo: true,
+                stock: true,
+                imageSrc: 'https://i.ibb.co/C1wr0zn/kisspng-asus-zenbook-3-ux390-laptop-macbook-pro-kaby-lake-5b16a1e3437c27-8538270315282098912764.png'
+            },
         ]
     },
     mutations: {

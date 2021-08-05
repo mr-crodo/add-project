@@ -1,6 +1,5 @@
 <template>
-
-  <v-main>
+  <v-main v-if="!loading">
     <v-container>
       <v-layout row>
         <v-flex xs12>
@@ -134,16 +133,34 @@
       </v-layout>
     </v-container>
   </v-main>
+    <div v-else class="d-flex hh align-center justify-center">
+    <v-container>
+      <v-layout row class="text-center">
+        <v-flex xs12 justify-center class="text-xs-center pt-5">
+            <v-progress-circular
+              :size="110"
+              :width="7"
+              color="cyan darken-2"
+              indeterminate
+            ></v-progress-circular>
+        </v-flex>
+      </v-layout>
+    </v-container>
+  </div>
 </template>
 
 <script>
 export default {
+
   computed: {
     promoAds () {
       return this.$store.getters.promoAds
     },
     ads () {
       return this.$store.getters.ads
+    },
+        loading () {
+      return this.$store.getters.loading
     }
   }
 }

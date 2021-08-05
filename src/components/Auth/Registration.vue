@@ -20,12 +20,12 @@
               >
                 <v-text-field
                     color="blue-grey"
-                    label="Name"
-                    name="name"
+                    label="User Name"
+                    name="username"
                     prepend-inner-icon="mdi-account"
-                    type="name"
+                    type="username"
                     v-model="form.name"
-                    :rules="nameRules"
+                    :rules="usernameRules"
                 ></v-text-field>
                 <v-text-field
                     color="blue-grey"
@@ -65,11 +65,11 @@
                 ></v-text-field>
                 <v-checkbox
                     v-model="ex4"
-                    label="success"
-                    color="success"
-
+                    label="By checking the box you accept our license agreement and confirm that you are over 16 years old"
+                    color="teal"
                     hide-details
                     required
+                    :rules="checkboxRules"
                 ></v-checkbox>
 
               </v-form>
@@ -193,8 +193,17 @@ export default {
         v => !!v || 'Password is required',
         v => (v && v.length >= 6) || 'Password must be equal or more than 6 characters'
       ],
-      nameRules: [
-        v => !!v || 'Name is required'
+      firstnameRules: [
+        v => !!v || 'First name is required'
+      ],
+      lastnameRules: [
+        v => !!v || 'Last name is required'
+      ],
+      usernameRules: [
+        v => !!v || 'User name is required'
+      ],
+      checkboxRules: [
+        v => !!v || 'User name is required'
       ],
       confirmPasswordRules: [
         v => !!v || 'Password is required',
@@ -270,7 +279,7 @@ export default {
                 .then(data => {
                   data.user
                   .updateProfile({
-                    displayName: this.form.name
+                    displayName: this.form.name,
                   })
                   .then(() => {})
                   //testing
